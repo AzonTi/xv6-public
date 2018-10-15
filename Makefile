@@ -8,6 +8,7 @@ OBJS = \
 	ioapic.o\
 	kalloc.o\
 	kbd.o\
+	kdate.o\
 	lapic.o\
 	log.o\
 	main.o\
@@ -177,6 +178,7 @@ UPROGS=\
 	_mkdir\
 	_rm\
 	_sh\
+	_sleepsectest\
 	_stressfs\
 	_usertests\
 	_wc\

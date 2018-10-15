@@ -98,3 +98,28 @@ int sys_getdate(void) {
     return 0;
 }
 
+int
+sys_sleep_sec(void)
+{
+  int sec;
+  struct rtcdate d;
+  uint t0, t;
+
+  if(argint(0, &sec) < 0)
+    return -1;
+  cmostime(&d);
+  t = date2time(&d);
+  t0 = t;
+  acquire(&tickslock);
+  while(t - t0 < sec){
+    sleep(&ticks, &tickslock);
+    if(myproc()->killed){
+      release(&tickslock);
+      return -1;
+    }
+    cmostime(&d);
+    t = date2time(&d);
+  }
+  release(&tickslock);
+  return 0;
+}

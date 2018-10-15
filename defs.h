@@ -72,6 +72,9 @@ void            kinit2(void*, void*);
 // kbd.c
 void            kbdintr(void);
 
+// kdate.c
+uint            date2time(struct rtcdate *);
+
 // lapic.c
 void            cmostime(struct rtcdate *r);
 int             lapicid(void);
